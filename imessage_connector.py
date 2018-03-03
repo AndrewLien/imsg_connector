@@ -8,17 +8,9 @@ class Helpers():
     def __init__(self):
         pass
 
-
-class Message:
-    def __init__(self, text, date):
-        self.text = text
-        self.date = date
-
-    def __repr__(self):
-        return "Text: " + self.text + " Date: " + str(self.date)
         
 class iMessageConnector():
-    def __init__(self):
+    def __init__(self): 
         self.helpers_library = Helpers()
         self.local_path_to_db = "/Library/Messages/chat.db"
         self.local_home_path = expanduser("~")
@@ -45,8 +37,6 @@ class iMessageConnector():
         c.execute("SELECT * FROM `handle`")
         recipients = {}
         for row in c:
-            # print row
-            # recipients.append(Recipient(row[0], row[1]))
             if '+' in row[1]:
                 recipients[row[1]] = row[0]
 
@@ -60,7 +50,6 @@ class iMessageConnector():
         connection = self.get_imsg_db()
         c = connection.cursor()
 
-        # The `message` table stores all exchanged iMessages.
         c.execute("SELECT * FROM `message` WHERE handle_id=" + str(id))
         messages = []
         for row in c:
@@ -81,8 +70,6 @@ class iMessageConnector():
                 'message': encoded_text
             }
             messages.append(msg_data_type)
-            # Strip any special non-ASCII characters (e.g., the special character that is used as a placeholder for attachments such as files or images).
-
         connection.close()
 
         return messages
@@ -95,8 +82,7 @@ class iMessageConnector():
         c.execute("SELECT * FROM `handle`")
         recipients = []
         for row in c:
-            #print row
-            #recipients.append(Recipient(row[0], row[1]))
+
             if '+' in row[1]:
                 recipients.append(row[1])
         imsg_connect.close()

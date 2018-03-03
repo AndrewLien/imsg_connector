@@ -32,4 +32,5 @@ Get array of messages from a particular phone number (Requires the + before each
 imc.get_messages_for_recipient('+15551237777')
 ```
 
-
+### Acknowledgements
+Used a lot of inspiration from https://github.com/mattrajca/pymessage-lite to formulate receiving list and message. Also used his SQL queries to derive the array and JSON data.
